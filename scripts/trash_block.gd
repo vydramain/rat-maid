@@ -14,6 +14,7 @@ const ROT_SPEED := 8.0      # темп поворота к цели, в обра
 
 var hitched_to : Node2D  = null
 var front_direction : Vector2 = Vector2.ZERO
+var incinerator_station_area : Area2D = $IncineratorStation.EffectCollisionShape2D2
 
 func _ready() -> void:
 	add_to_group("trash_block")
@@ -26,6 +27,26 @@ func hitch(player: Node2D) -> void:
 func unhitch() -> void:
 	hitched_to = null
 	velocity = Vector2.ZERO
+
+func activate_incinerator_station_area() -> void:
+	incinerator_station_area.monitoring = true
+	incinerator_station_area.monitorable = true
+
+func deactivate_incinerator_station_area() -> void:
+	incinerator_station_area.monitoring = false
+	incinerator_station_area.monitorable = false
+
+func _on_incinerator_station_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player") and body.carrying_corpse != null:
+		_accept_incinerator_station_area_body_entered(body)
+
+func _accept_incinerator_station_area_body_entered(player: Node2D) -> void:
+	var corpse: Node2D = player.get("carrying_corpse")
+	player.call("drop_corpse")
+	if is_instance_valid(corpse):
+		corpse.queue_free()
+	emit_signal("corpse_deposited")
+
 
 func _physics_process(delta: float) -> void:
 	if hitched_to == null:
