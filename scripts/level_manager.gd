@@ -9,9 +9,9 @@ const CLEANUP_TIME_HARD := 35.0
 
 @onready var hud: CanvasLayer = $HUD
 @onready var dialogue_box: CanvasLayer = $HUD/DialogueBox
-@onready var exit_door: Area2D = $"../ExitDoor"
+# @onready var exit_door: Area2D = $"../ExitDoor"
 @onready var swat_spawn_points: Node2D = $"../SwatSpawnPoints"
-@onready var trash_bin: Node2D = $"../TrashBin"
+# @onready var trash_bin: Node2D = $"../TrashBin"
 @onready var exit_arrow: Node2D = $"../ExitArrow"
 
 var current_state: State = State.INTRO
@@ -44,11 +44,11 @@ func _ready() -> void:
 		enemies_alive += 1
 
 	# Disable exit door until cleanup phase
-	exit_door.process_mode = Node.PROCESS_MODE_DISABLED
+	# exit_door.process_mode = Node.PROCESS_MODE_DISABLED
 
 	# Trash bin is in the scene from the start, activated in CLEANUP
-	trash_bin.deactivate()
-	trash_bin.corpse_deposited.connect(on_corpse_binned)
+	# trash_bin.deactivate()
+	# trash_bin.corpse_deposited.connect(on_corpse_binned)
 
 	_enter_intro_dialogue()
 
@@ -107,12 +107,12 @@ func _enter_cleanup() -> void:
 	hud.set_hints([["interact", "hud.hint.pickup"], ["toggle_mop", "hud.hint.toggle_mop"]])
 
 	# Activate exit door
-	exit_door.process_mode = Node.PROCESS_MODE_INHERIT
-	exit_door.body_entered.connect(on_exit_reached)
+	# exit_door.process_mode = Node.PROCESS_MODE_INHERIT
+	# exit_door.body_entered.connect(on_exit_reached)
 
 	# Activate trash bin and exit arrow
-	trash_bin.activate()
-	exit_arrow.activate(exit_door)
+	# trash_bin.activate()
+	# exit_arrow.activate(exit_door)
 
 
 func _enter_win() -> void:
