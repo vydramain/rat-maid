@@ -163,7 +163,7 @@ func pickup_corpse(corpse: Node2D) -> void:
 func pickup_trash_block(trash_block: Node2D) -> void:
 	if trash_block.is_in_group("trash_block"):
 		trash_block.hitch(self)
-	hitched_block = trash_block
+	hitched_block = trash_block # Тут какой-то пиздец; Я не понял почему
 
 func drop_corpse() -> void:
 	carrying_corpse = null
