@@ -146,7 +146,7 @@ func try_interact() -> void:
 		return
 	
 	# Corpse.PickupArea and TrashBlock.HitchArea is an Area2D on layer 4; InteractionArea has mask 4
-	var area: Area2D = $InteractionArea
+	var area: Area2D = $InteractionArea # Move to file's head
 	for overlap in area.get_overlapping_areas():
 		var parent := overlap.get_parent()
 		if parent.is_in_group("corpse"):
