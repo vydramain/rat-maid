@@ -25,6 +25,7 @@ var input_locked := false
 var hitched_block : Node2D = null
 var _weapons_locked := false
 
+# Я ебал
 
 func _ready() -> void:
 	add_to_group("player")
