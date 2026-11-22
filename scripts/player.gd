@@ -25,6 +25,7 @@ var input_locked := false
 var hitched_block : Node2D = null
 var _weapons_locked := false
 
+# Я ебал
 
 func _ready() -> void:
 	add_to_group("player")
@@ -146,7 +147,7 @@ func try_interact() -> void:
 		return
 	
 	# Corpse.PickupArea and TrashBlock.HitchArea is an Area2D on layer 4; InteractionArea has mask 4
-	var area: Area2D = $InteractionArea
+	var area: Area2D = $InteractionArea # Move to file's head
 	for overlap in area.get_overlapping_areas():
 		var parent := overlap.get_parent()
 		if parent.is_in_group("corpse"):
@@ -163,7 +164,7 @@ func pickup_corpse(corpse: Node2D) -> void:
 func pickup_trash_block(trash_block: Node2D) -> void:
 	if trash_block.is_in_group("trash_block"):
 		trash_block.hitch(self)
-	hitched_block = trash_block
+	hitched_block = trash_block # Тут какой-то пиздец; Я не понял почему
 
 func drop_corpse() -> void:
 	carrying_corpse = null
